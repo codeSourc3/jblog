@@ -7,58 +7,53 @@ import org.aspectj.lang.ProceedingJoinPoint;
 
 /**
  * 
-*  <pre>    
-* 类名称：ErrorLogAdvice 
-* 类描述：  
-* 创建人：陈国祥   (kingschan)
-* 创建时间：2015-4-8 下午7:47:01   
-* 修改人：Administrator   
-* 修改时间：2015-4-8 下午7:47:01   
-* 修改备注：   
-* @version V1.0
-* </pre>
+ *     
+ * @author 陈国祥 (kingschan)
+ * @version 12.2.2019
+ * 
  */
-//@Component("ErrorLogAdvice")
-//@Aspect
-public class ErrorLogAdvice {
+// @Component ("ErrorLogAdvice")
+// @Aspect
+public  class  ErrorLogAdvice {
     
    
-//    @Before("execution(* com.kingschan.blog..*.*(..))")  
-    public void before(){  
-        System.out.println("@before");  
+//     @Before ("execution (* com.kingschan.blog .. *. * (..))")  
+    public  void  before () {  
+        System . Out . Println ( " @before " );  
     }
     /**
-     * 目标方法正常完成后，会被调用
-     * @param args 目录方法的返回值 
+     * After the target method is completed normally, it will be called
+     * Return value of @param args directory method
      */
-//    @AfterReturning(returning="args",pointcut="execution(*  com.kingschan.blog..*.*(..))")  
-    public void AfterReturning(Object args){  
-        System.out.println("@AfterReturning 获取目录方法返回值："+args); 
-        System.out.println("");
+//     @AfterReturning (returning = "args", pointcut = "execution (* com.kingschan.blog .. *. * (..))")  
+    public  void  AfterReturning ( Object  args ) {  
+        System . Out . Println ( " @AfterReturning Get directory method return value: " + args);
+        System . Out . Println ( " " );
     }  
       
-//    @AfterThrowing(throwing="ex",pointcut="execution(*  com.kingschan.blog..*.*(..))")  
-    public void AfterThrowing(JoinPoint joinPoint,Throwable ex){  
+//     @AfterThrowing (throwing = "ex", pointcut = "execution (* com.kingschan.blog .. *. * (..))"))  
+    public  void  AfterThrowing ( JoinPoint  joinPoint , Throwable  ex ) {  
     	
-        System.out.println("目标方法抛出的异常@AfterThrowing："+ex);  
+        System . Out . Println ( " The exception thrown by the target method @AfterThrowing: " + ex);  
     }  
     /**
-     * 与@AfterReturning的区别
-     * 不管方法是否正常结束它都会调用
+     * Difference from @AfterReturning
+     * It will be called regardless of whether the method ends normally
      */
-//    @After("execution(*  com.kingschan.blog..*.*(..))")
-    public void after(){
-        System.out.println("@after");
+//     @After ("execution (* com.kingschan.blog .. *. * (..))")
+    public  void  after () {
+        System . Out . Println ( " @after " );
     }
     /**
-     * 可以决定方法在何时执行，甚至可以完全阻止目标方法执行
-     * @throws Throwable 
+     * Can decide when the method is executed, and even prevent the target method from executing completely
+     * @return object for switching back to the original control flow.
+     * @throws Throwable
      */
-//    @Around("execution(*  com.kingschan.blog..*.*(..))")
-    public Object around(ProceedingJoinPoint jp) throws Throwable{
-        System.out.println(String.format("@Around:参数：%s | 目标%s  | getthis:%s", jp.getArgs().toString(),jp.getTarget().getClass().getName(),jp.getThis()));
-        Object o =jp.proceed();
-        //jp.proceed(xxx); 还可以改变参数
+//     @Around ("execution (* com.kingschan.blog .. *. * (..))")
+    public  Object  around ( ProceedingJoinPoint  jp ) throws  Throwable {
+        System . OUT . Println ( String . Format ( " @Around: Parameters:% s | S target% | getThis:% S " , jp . GetArgs () . ToString (), jp . GetTarget () . GetClass () . GetName (), JP . getThis ()));
+        Object o = jp . Proceed ();
+        // jp.proceed (xxx); can also change parameters
         return o;
     }
 }
